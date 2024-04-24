@@ -2293,104 +2293,104 @@ A monolith is a self-contained and independent application. It is built as a sin
 - **Устойчивость и Толерантность к сбоям**: Сервисы должны быть спроектированы таким образом, чтобы они продолжали работать в случае сбоя или ошибок. В средах с независимо развертываемыми сервисами устойчивость к отказам имеет высшее значение.
 - **Высокая поддерживаемость**: Сервисы должны быть легкими в обслуживании и тестировании, потому что сервисы, которые невозможно обслуживать, будут переписаны.
 
-### Advantages
+### Преимущества
 
-Here are some advantages of microservices architecture:
+Вот несколько преимуществ архитектуры микросервисов:
 
-- Loosely coupled services.
-- Services can be deployed independently.
-- Highly agile for multiple development teams.
-- Improves fault tolerance and data isolation.
-- Better scalability as each service can be scaled independently.
-- Eliminates any long-term commitment to a particular technology stack.
+- Слабая связь между сервисами.
+- Сервисы могут быть развернуты независимо друг от друга.
+- Высокая гибкость для нескольких команд разработки.
+- Повышает устойчивость к сбоям и изоляцию данных.
+- Лучшая масштабируемость, так как каждый сервис может масштабироваться независимо.
+- Исключает долгосрочные обязательства по определенному стеку технологий.
 
-### Disadvantages
+### Недостатки
 
-Microservices architecture brings its own set of challenges:
+Архитектура микросервисов несет свой набор проблем:
 
-- Complexity of a distributed system.
-- Testing is more difficult.
-- Expensive to maintain (individual servers, databases, etc.).
-- Inter-service communication has its own challenges.
-- Data integrity and consistency.
-- Network congestion and latency.
+- Сложность распределенной системы.
+- Тестирование более сложно.
+- Дорого в обслуживании (отдельные серверы, базы данных и т. д.).
+- Взаимосвязь между сервисами имеет свои собственные проблемы.
+- Целостность и последовательность данных.
+- Сетевая перегрузка и задержка.
 
-### Best practices
+### Лучшие практики
 
-Let's discuss some microservices best practices:
+Давайте обсудим некоторые лучшие практики микросервисов:
 
-- Model services around the business domain.
-- Services should have loose coupling and high functional cohesion.
-- Isolate failures and use resiliency strategies to prevent failures within a service from cascading.
-- Services should only communicate through well-designed APIs. Avoid leaking implementation details.
-- Data storage should be private to the service that owns the data
-- Avoid coupling between services. Causes of coupling include shared database schemas and rigid communication protocols.
-- Decentralize everything. Individual teams are responsible for designing and building services. Avoid sharing code or data schemas.
-- Fail fast by using a [circuit breaker](https://karanpratapsingh.com/courses/system-design/circuit-breaker) to achieve fault tolerance.
-- Ensure that the API changes are backward compatible.
+- Моделируйте сервисы вокруг бизнес-домена.
+- Сервисы должны иметь слабую связь и высокую функциональную согласованность.
+- Изолируйте сбои и используйте стратегии устойчивости, чтобы предотвратить распространение сбоев внутри сервиса.
+- Сервисы должны общаться только через хорошо спроектированные API. Избегайте утечек деталей реализации.
+- Хранение данных должно быть закрытым для сервиса, владеющего данными.
+- Избегайте связи между сервисами. Причины связи включают в себя общие схемы баз данных и жесткие протоколы связи.
+- Децентрализуйте все. Отдельные команды несут ответственность за проектирование и создание сервисов. Избегайте обмена кодом или схемами данных.
+- Быстро откажитесь, используя [переключатель](https://karanpratapsingh.com/courses/system-design/circuit-breaker) для достижения устойчивости к сбоям.
+- Обеспечьте обратную совместимость изменений в API.
 
-### Pitfalls
+### Ловушки
 
-Below are some common pitfalls of microservices architecture:
+Ниже приведены некоторые распространенные ловушки архитектуры микросервисов:
 
-- Service boundaries are not based on the business domain.
-- Underestimating how hard is to build a distributed system.
-- Shared database or common dependencies between services.
-- Lack of Business Alignment.
-- Lack of clear ownership.
-- Lack of idempotency.
-- Trying to do everything [ACID instead of BASE](https://karanpratapsingh.com/courses/system-design/acid-and-base-consistency-models).
-- Lack of design for fault tolerance may result in cascading failures.
+- Границы сервисов не основаны на бизнес-домене.
+- Недооценка того, насколько сложно построить распределенную систему.
+- Общие базы данных или общие зависимости между сервисами.
+- Отсутствие выравнивания с бизнесом.
+- Отсутствие ясной ответственности.
+- Отсутствие идемпотентности.
+- Попытка делать все [ACID вместо BASE](https://karanpratapsingh.com/courses/system-design/acid-and-base-consistency-models).
+- Отсутствие проектирования для обеспечения устойчивости к сбоям может привести к каскадным сбоям.
 
-## Beware of the distributed monolith
+## Остерегайтесь распределенного монолита
 
-Distributed Monolith is a system that resembles the microservices architecture but is tightly coupled within itself like a monolithic application. Adopting microservices architecture comes with a lot of advantages. But while making one, there are good chances that we might end up with a distributed monolith.
+Распределенный монолит - это система, которая напоминает архитектуру микросервисов, но тесно связана внутри себя, как монолитное приложение. Принятие архитектуры микросервисов приносит множество преимуществ. Но при ее создании существует большая вероятность того, что мы можем получить распределенный монолит.
 
-Our microservices are just a distributed monolith if any of these apply to it:
+Наши микросервисы являются распределенным монолитом, если применимо хотя бы одно из следующего:
 
-- Requires low latency communication.
-- Services don't scale easily.
-- Dependency between services.
-- Sharing the same resources such as databases.
-- Tightly coupled systems.
+- Требуется обмен данными с низкой задержкой.
+- Сервисы не масштабируются легко.
+- Зависимость между сервисами.
+- Общие ресурсы, такие как базы данных.
+- Тесно связанные системы.
 
-One of the primary reasons to build an application using microservices architecture is to have scalability. Therefore, microservices should have loosely coupled services which enable every service to be independent. The distributed monolith architecture takes this away and causes most components to depend on one another, increasing design complexity.
+Одной из основных причин построения приложения с использованием архитектуры микросервисов является масштабируемость. Поэтому микросервисы должны иметь слабую связь, что позволяет каждому сервису быть независимым. Архитектура распределенного монолита лишает этого и заставляет большинство компонентов зависеть друг от друга, увеличивая сложность проектирования.
 
-## Microservices vs Service-oriented architecture (SOA)
+## Микросервисы против архитектуры ориентированной на службы (SOA)
 
-You might have seen _Service-oriented architecture (SOA)_ mentioned around the internet, sometimes even interchangeably with microservices, but they are different from each other and the main distinction between the two approaches comes down to _scope_.
+Вы могли видеть _архитектуру ориентированную на службы (SOA)_ упоминаемую в Интернете, иногда даже взаимозаменяемо с микросервисами, но они отличаются друг от друга, и основное различие между двумя подходами сводится к _области применения_.
 
-Service-oriented architecture (SOA) defines a way to make software components reusable via service interfaces. These interfaces utilize common communication standards and focus on maximizing application service reusability whereas microservices are built as a collection of various smallest independent service units focused on team autonomy and decoupling.
+Архитектура ориентированная на службы (SOA) определяет способ сделать компоненты программного обеспечения повторно используемыми с помощью служебных интерфейсов. Эти интерфейсы используют общие стандарты коммуникации и ориентированы на максимизацию повторного использования служб приложения, тогда как микросервисы создаются как набор различных независимых сервисных блоков, сфокусированных на автономии команд и развязке.
 
 ## Why you don't need microservices
 
 ![architecture-range](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/monoliths-microservices/architecture-range.png)
 
-So, you might be wondering, monoliths seem like a bad idea to begin with, why would anyone use that?
+Возможно, вы задаетесь вопросом: монолиты, кажется, изначально плохая идея, почему бы кто-то использовал их?
 
-Well, it depends. While each approach has its own advantages and disadvantages, it is advised to start with a monolith when building a new system. It is important to understand, that microservices are not a silver bullet, instead, they solve an organizational problem. Microservices architecture is about your organizational priorities and team as much as it's about technology.
+Ну, это зависит. Хотя у каждого подхода есть свои преимущества и недостатки, рекомендуется начинать с монолита при создании новой системы. Важно понимать, что микросервисы не являются универсальным средством, они решают организационную проблему. Архитектура микросервисов - это как организационные приоритеты и команда, так и технологии.
 
-Before making the decision to move to microservices architecture, you need to ask yourself questions like:
+Прежде чем принять решение перейти на архитектуру микросервисов, вам следует задать себе вопросы, такие как:
 
-- _"Is the team too large to work effectively on a shared codebase?"_
-- _"Are teams blocked on other teams?"_
-- _"Does microservices deliver clear business value for us?"_
-- _"Is my business mature enough to use microservices?"_
-- _"Is our current architecture limiting us with communication overhead?"_
+- _"Слишком ли большая команда для эффективной работы над общей кодовой базой?"_
+- _"Заблокированы ли команды другими командами?"_
+- _"Доставляют ли микросервисы явную бизнес-ценность для нас?"_
+- _"Моя компания достаточно зрела для использования микросервисов?"_
+- _"Ограничивает ли наша текущая архитектура нас избыточными коммуникациями?"_
 
-If your application does not require to be broken down into microservices, you don't need this. There is no absolute necessity that all applications should be broken down into microservices.
+Если вашему приложению не требуется разделение на микросервисы, вам это не нужно. Нет абсолютной необходимости разделять все приложения на микросервисы.
 
-We frequently draw inspiration from companies such as Netflix and their use of microservices, but we overlook the fact that we are not Netflix. They went through a lot of iterations and models before they had a market-ready solution, and this architecture became acceptable for them when they identified and solved the problem they were trying to tackle.
+Мы часто черпаем вдохновение из компаний, таких как Netflix, и их использование микросервисов, но мы упускаем из виду тот факт, что мы не Netflix. Они прошли через множество итераций и моделей, прежде чем у них появилось готовое к рынку решение, и эта архитектура стала приемлемой для них, когда они выявили и решили проблему, которую пытались решить.
 
-That's why it's essential to understand in-depth if your business _actually_ needs microservices. What I'm trying to say is microservices are solutions to complex concerns and if your business doesn't have complex issues, you don't need them.
+Поэтому важно глубоко понимать, действительно ли вашему бизнесу _нужны_ микросервисы. Что я пытаюсь сказать, микросервисы - это решения сложных проблем, и если у вашего бизнеса нет сложных проблем, вам это не нужно.
 
-# Event-Driven Architecture (EDA)
+# Архитектура, основанная на событиях (EDA)
 
-Event-Driven Architecture (EDA) is about using events as a way to communicate within a system. Generally, leveraging a message broker to publish and consume events asynchronously. The publisher is unaware of who is consuming an event and the consumers are unaware of each other. Event-Driven Architecture is simply a way of achieving loose coupling between services within a system.
+Архитектура, основанная на событиях (EDA), заключается в использовании событий как способа общения в системе. Обычно используется брокер сообщений для асинхронной публикации и потребления событий. Издатель не знает, кто потребляет событие, и потребители не знают друг о друге. Архитектура, основанная на событиях, просто способ достижения слабой связности между сервисами в системе.
 
-## What is an event?
+## Что такое событие?
 
-An event is a data point that represents state changes in a system. It doesn't specify what should happen and how the change should modify the system, it only notifies the system of a particular state change. When a user makes an action, they trigger an event.
+Событие - это точка данных, представляющая изменения состояния в системе. Оно не указывает, что должно произойти и как изменение должно модифицировать систему, а только уведомляет систему о конкретном изменении состояния. Когда пользователь совершает действие, он инициирует событие.
 
 ## Components
 
@@ -2415,36 +2415,36 @@ There are several ways to implement the event-driven architecture, and which met
 
 _Note: Each of these methods is discussed separately._
 
-## Advantages
+## Преимущества
 
-Let's discuss some advantages:
+Давайте обсудим некоторые преимущества:
 
-- Decoupled producers and consumers.
-- Highly scalable and distributed.
-- Easy to add new consumers.
-- Improves agility.
+- Отделение производителей и потребителей.
+- Высокая масштабируемость и децентрализация.
+- Легкость добавления новых потребителей.
+- Повышает гибкость.
 
-## Challenges
+## Проблемы
 
-Here are some challenges of event-drive architecture:
+Вот некоторые проблемы архитектуры, основанной на событиях:
 
-- Guaranteed delivery.
-- Error handling is difficult.
-- Event-driven systems are complex in general.
-- Exactly once, in-order processing of events.
+- Гарантированная доставка.
+- Обработка ошибок затруднительна.
+- Системы, основанные на событиях, в целом сложны.
+- Обработка событий с соблюдением порядка и однократного выполнения.
 
-## Use cases
+## Сценарии использования
 
-Below are some common use cases where event-driven architectures are beneficial:
+Ниже приведены некоторые общие сценарии использования, где архитектуры, основанные на событиях, являются выгодными:
 
-- Metadata and metrics.
-- Server and security logs.
-- Integrating heterogeneous systems.
-- Fanout and parallel processing.
+- Метаданные и метрики.
+- Логи сервера и безопасности.
+- Интеграция разнородных систем.
+- Распределенная обработка и параллельная обработка.
 
-## Examples
+## Примеры
 
-Here are some widely used technologies for implementing event-driven architectures:
+Вот некоторые широко используемые технологии для реализации архитектур, основанных на событиях:
 
 - [NATS](https://nats.io)
 - [Apache Kafka](https://kafka.apache.org)
@@ -2458,144 +2458,144 @@ Instead of storing just the current state of the data in a domain, use an append
 
 ![event-sourcing](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/event-sourcing/event-sourcing.png)
 
-This can simplify tasks in complex domains, by avoiding the need to synchronize the data model and the business domain, while improving performance, scalability, and responsiveness. It can also provide consistency for transactional data, and maintain full audit trails and history that can enable compensating actions.
+Это может упростить задачи в сложных областях, избегая необходимости синхронизации модели данных и бизнес-домена, при этом улучшая производительность, масштабируемость и отзывчивость. Это также может обеспечить согласованность для транзакционных данных и поддерживать полный журнал аудита и историю, что позволяет выполнять компенсационные действия.
 
-## Event sourcing vs Event-Driven Architecture (EDA)
+## Событийное хранилище против архитектуры, основанной на событиях (EDA)
 
-Event sourcing is seemingly constantly being confused with [Event-driven Architecture (EDA)](https://karanpratapsingh.com/courses/system-design/event-driven-architecture). Event-driven architecture is about using events to communicate between service boundaries. Generally, leveraging a message broker to publish and consume events asynchronously within other boundaries.
+Похоже, что событийное хранилище постоянно путают с [архитектурой, основанной на событиях (EDA)](https://karanpratapsingh.com/courses/system-design/event-driven-architecture). Архитектура, основанная на событиях, заключается в использовании событий для общения между границами сервисов. Обычно используется брокер сообщений для асинхронной публикации и потребления событий в пределах других границ.
 
-Whereas, event sourcing is about using events as a state, which is a different approach to storing data. Rather than storing the current state, we're instead going to be storing events. Also, event sourcing is one of the several patterns to implement an event-driven architecture.
+В то время как событийное хранилище заключается в использовании событий как состояния, что является другим подходом к хранению данных. Вместо хранения текущего состояния мы будем хранить события. Кроме того, событийное хранилище является одним из нескольких шаблонов для реализации архитектуры, основанной на событиях.
 
-## Advantages
+## Преимущества
 
-Let's discuss some advantages of using event sourcing:
+Давайте обсудим некоторые преимущества использования событийного хранилища:
 
-- Excellent for real-time data reporting.
-- Great for fail-safety, data can be reconstituted from the event store.
-- Extremely flexible, any type of message can be stored.
-- Preferred way of achieving audit logs functionality for high compliance systems.
+- Отлично подходит для отчетности в реальном времени.
+- Прекрасно подходит для обеспечения надежности: данные можно восстановить из хранилища событий.
+- Крайне гибкое, можно хранить любой тип сообщений.
+- Предпочтительный способ реализации функционала журналов аудита для высокоскоростных систем соблюдения.
 
-## Disadvantages
+## Недостатки
 
-Following are the disadvantages of event sourcing:
+Вот недостатки событийного хранилища:
 
-- Requires an extremely efficient network infrastructure.
-- Requires a reliable way to control message formats, such as a schema registry.
-- Different events will contain different payloads.
+- Требуется крайне эффективная сетевая инфраструктура.
+- Требуется надежный способ контроля форматов сообщений, такой как реестр схем.
+- Различные события могут содержать разные данные.
 
-# Command and Query Responsibility Segregation (CQRS)
+# Командно-запросное разделение обязанностей (CQRS)
 
-Command Query Responsibility Segregation (CQRS) is an architectural pattern that divides a system's actions into commands and queries. It was first described by [Greg Young](https://twitter.com/gregyoung).
+Командно-запросное разделение обязанностей (CQRS) - это архитектурный шаблон, который разделяет действия системы на команды и запросы. Впервые он был описан [Грегом Янгом](https://twitter.com/gregyoung).
 
-In CQRS, a _command_ is an instruction, a directive to perform a specific task. It is an intention to change something and doesn't return a value, only an indication of success or failure. And, a _query_ is a request for information that doesn't change the system's state or cause any side effects.
+В CQRS _команда_ - это инструкция, директива для выполнения определенной задачи. Это намерение изменить что-то и не возвращает значение, только указание на успех или неудачу. А _запрос_ - это запрос информации, который не изменяет состояние системы и не вызывает побочных эффектов.
 
 ![command-and-query-responsibility-segregation](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/command-and-query-responsibility-segregation/command-and-query-responsibility-segregation.png)
 
-The core principle of CQRS is the separation of commands and queries. They perform fundamentally different roles within a system, and separating them means that each can be optimized as needed, which distributed systems can really benefit from.
+Основной принцип CQRS заключается в разделении команд и запросов. Они выполняют фундаментально разные роли в системе, и их разделение означает, что каждый из них может быть оптимизирован по мере необходимости, что действительно выгодно для распределенных систем.
 
-## CQRS with Event Sourcing
+## CQRS с событийным хранилищем
 
-The CQRS pattern is often used along with the Event Sourcing pattern. CQRS-based systems use separate read and write data models, each tailored to relevant tasks and often located in physically separate stores.
+Шаблон CQRS часто используется вместе с шаблоном событийного хранилища. Системы, основанные на CQRS, используют отдельные модели данных для чтения и записи, каждая из которых адаптирована к соответствующим задачам и часто расположены в физически разных хранилищах.
 
-When used with the Event Sourcing pattern, the store of events is the write model and is the official source of information. The read model of a CQRS-based system provides materialized views of the data, typically as highly denormalized views.
+При использовании с шаблоном событийного хранилища хранилище событий является моделью записи и является официальным источником информации. Модель чтения системы, основанной на CQRS, предоставляет материализованные представления данных, обычно в виде сильно денормализованных представлений.
 
-## Advantages
+## Преимущества
 
-Let's discuss some advantages of CQRS:
+Давайте обсудим некоторые преимущества CQRS:
 
-- Allows independent scaling of read and write workloads.
-- Easier scaling, optimizations, and architectural changes.
-- Closer to business logic with loose coupling.
-- The application can avoid complex joins when querying.
-- Clear boundaries between the system behavior.
+- Позволяет независимое масштабирование рабочей нагрузки для чтения и записи.
+- Упрощает масштабирование, оптимизацию и изменения архитектуры.
+- Ближе к бизнес-логике с слабой связью.
+- Приложение может избежать сложных объединений при запросах.
+- Четкие границы между поведением системы.
 
-## Disadvantages
+## Недостатки
 
-Below are some disadvantages of CQRS:
+Вот некоторые недостатки CQRS:
 
-- More complex application design.
-- Message failures or duplicate messages can occur.
-- Dealing with eventual consistency is a challenge.
-- Increased system maintenance efforts.
+- Более сложное проектирование приложения.
+- Возможны сбои сообщений или дублирующиеся сообщения.
+- Работа с потенциальной согласованностью - вызов.
+- Увеличение усилий по обслуживанию системы.
 
-## Use cases
+## Сценарии использования
 
-Here are some scenarios where CQRS will be helpful:
+Вот несколько сценариев, где CQRS будет полезен:
 
-- The performance of data reads must be fine-tuned separately from the performance of data writes.
-- The system is expected to evolve over time and might contain multiple versions of the model, or where business rules change regularly.
-- Integration with other systems, especially in combination with event sourcing, where the temporal failure of one subsystem shouldn't affect the availability of the others.
-- Better security to ensure that only the right domain entities are performing writes on the data.
+- Производительность чтения данных должна быть настроена отдельно от производительности записи данных.
+- Ожидается, что система будет развиваться со временем и может содержать несколько версий модели или где бизнес-правила регулярно меняются.
+- Интеграция с другими системами, особенно в сочетании с событийным хранилищем, где временный сбой одной подсистемы не должен влиять на доступность других.
+- Улучшенная безопасность, чтобы гарантировать, что только правильные доменные сущности выполняют запись данных.
 
-# API Gateway
+# Шлюз API
 
-The API Gateway is an API management tool that sits between a client and a collection of backend services. It is a single entry point into a system that encapsulates the internal system architecture and provides an API that is tailored to each client. It also has other responsibilities such as authentication, monitoring, load balancing, caching, throttling, logging, etc.
+API Gateway - это инструмент управления API, который находится между клиентом и коллекцией бэкэнд-сервисов. Это единственная точка входа в систему, которая инкапсулирует внутреннюю архитектуру системы и предоставляет API, настроенное под каждого клиента. Он также выполняет другие функции, такие как аутентификация, мониторинг, балансировка нагрузки, кэширование, ограничение скорости, ведение журнала и т. д.
 
 ![api-gateway](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/api-gateway/api-gateway.png)
 
-## Why do we need an API Gateway?
+## Зачем нам нужен API-шлюз?
 
-The granularity of APIs provided by microservices is often different than what a client needs. Microservices typically provide fine-grained APIs, which means that clients need to interact with multiple services. Hence, an API gateway can provide a single entry point for all clients with some additional features and better management.
+Гранулярность API, предоставляемых микросервисами, часто отличается от того, что нужно клиенту. Микросервисы обычно предоставляют мелкозернистые API, что означает, что клиентам необходимо взаимодействовать с несколькими сервисами. Поэтому API-шлюз может обеспечить единый точку входа для всех клиентов с дополнительными функциями и лучшим управлением.
 
-## Features
+## Функции
 
-Below are some desired features of an API Gateway:
+Ниже приведены некоторые желаемые функции API-шлюза:
 
-- Authentication and Authorization
-- [Service discovery](https://karanpratapsingh.com/courses/system-design/service-discovery)
-- [Reverse Proxy](https://karanpratapsingh.com/courses/system-design/proxy#reverse-proxy)
-- [Caching](https://karanpratapsingh.com/courses/system-design/caching)
-- Security
-- Retry and [Circuit breaking](https://karanpratapsingh.com/courses/system-design/circuit-breaker)
-- [Load balancing](https://karanpratapsingh.com/courses/system-design/load-balancing)
-- Logging, Tracing
-- API composition
-- [Rate limiting](https://karanpratapsingh.com/courses/system-design/rate-limiting) and throttling
-- Versioning
-- Routing
-- IP whitelisting or blacklisting
+- Аутентификация и авторизация
+- [Обнаружение сервисов](https://karanpratapsingh.com/courses/system-design/service-discovery)
+- [Обратный прокси](https://karanpratapsingh.com/courses/system-design/proxy#reverse-proxy)
+- [Кэширование](https://karanpratapsingh.com/courses/system-design/caching)
+- Безопасность
+- Повторы и [контроль цепи](https://karanpratapsingh.com/courses/system-design/circuit-breaker)
+- [Балансировка нагрузки](https://karanpratapsingh.com/courses/system-design/load-balancing)
+- Логирование, трассировка
+- Компоновка API
+- [Ограничение скорости](https://karanpratapsingh.com/courses/system-design/rate-limiting) и управление пропускной способностью
+- Версионирование
+- Маршрутизация
+- Белый или черный список IP-адресов
 
-## Advantages
+## Преимущества
 
-Let's look at some advantages of using an API Gateway:
+Давайте рассмотрим некоторые преимущества использования API-шлюза:
 
-- Encapsulates the internal structure of an API.
-- Provides a centralized view of the API.
-- Simplifies the client code.
-- Monitoring, analytics, tracing, and other such features.
+- Инкапсулирует внутреннюю структуру API.
+- Предоставляет централизованный вид на API.
+- Упрощает код клиента.
+- Мониторинг, аналитика, трассировка и другие подобные функции.
 
-## Disadvantages
+## Недостатки
 
-Here are some possible disadvantages of an API Gateway:
+Вот некоторые возможные недостатки API-шлюза:
 
-- Possible single point of failure.
-- Might impact performance.
-- Can become a bottleneck if not scaled properly.
-- Configuration can be challenging.
+- Возможная единственная точка отказа.
+- Может повлиять на производительность.
+- Может стать узким местом, если не масштабировать правильно.
+- Настройка может быть сложной.
 
-## Backend For Frontend (BFF) pattern
+## Шаблон "Backend For Frontend" (BFF)
 
-In the Backend For Frontend (BFF) pattern, we create separate backend services to be consumed by specific frontend applications or interfaces. This pattern is useful when we want to avoid customizing a single backend for multiple interfaces. This pattern was first described by [Sam Newman](https://samnewman.io).
+В шаблоне "Backend For Frontend" (BFF) мы создаем отдельные бэкэнд-сервисы для использования конкретными интерфейсами или приложениями. Этот шаблон полезен, когда мы хотим избежать настройки одного бэкэнда для нескольких интерфейсов. Этот шаблон был впервые описан [Сэмом Ньюманом](https://samnewman.io).
 
-Also, sometimes the output of data returned by the microservices to the front end is not in the exact format or filtered as needed by the front end. To solve this issue, the frontend should have some logic to reformat the data, and therefore, we can use BFF to shift some of this logic to the intermediate layer.
+Иногда вывод данных, возвращаемых микросервисами на фронтенд, не соответствует требуемому формату или не фильтруется, как нужно фронтенду. Для решения этой проблемы фронтенд должен иметь некоторую логику для повторной форматировки данных, и поэтому мы можем использовать BFF для перемещения некоторой этой логики на промежуточный уровень.
 
 ![backend-for-frontend](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/api-gateway/backend-for-frontend.png)
 
-The primary function of the backend for the frontend pattern is to get the required data from the appropriate service, format the data, and sent it to the frontend.
+Основная функция шаблона "Backend For Frontend" (BFF) заключается в получении необходимых данных из соответствующего сервиса, форматировании данных и их отправке на фронтенд.
 
-_[GraphQL](https://karanpratapsingh.com/courses/system-design/rest-graphql-grpc#graphql) performs really well as a backend for frontend (BFF)._
+_[GraphQL](https://karanpratapsingh.com/courses/system-design/rest-graphql-grpc#graphql) отлично подходит в качестве бэкэнда для фронтенда (BFF)._
 
-### When to use this pattern?
+### Когда использовать этот шаблон?
 
-We should consider using a Backend For Frontend (BFF) pattern when:
+Мы должны рассмотреть использование шаблона "Backend For Frontend" (BFF), когда:
 
-- A shared or general purpose backend service must be maintained with significant development overhead.
-- We want to optimize the backend for the requirements of a specific client.
-- Customizations are made to a general-purpose backend to accommodate multiple interfaces.
+- Необходимо поддерживать общий или универсальный бэкэнд-сервис с значительными накладными расходами на разработку.
+- Мы хотим оптимизировать бэкэнд под требования конкретного клиента.
+- В общий универсальный бэкэнд вносятся изменения, чтобы адаптировать его под несколько интерфейсов.
 
-## Examples
+## Примеры
 
-Following are some widely used gateways technologies:
+Вот некоторые широко используемые технологии шлюзов:
 
 - [Amazon API Gateway](https://aws.amazon.com/api-gateway)
 - [Apigee API Gateway](https://cloud.google.com/apigee)
@@ -2604,151 +2604,151 @@ Following are some widely used gateways technologies:
 
 # REST, GraphQL, gRPC
 
-A good API design is always a crucial part of any system. But it is also important to pick the right API technology. So, in this tutorial, we will briefly discuss different API technologies such as REST, GraphQL, and gRPC.
+Хороший дизайн API всегда является ключевой частью любой системы. Но также важно выбрать правильную технологию API. Итак, в этом руководстве мы кратко обсудим различные технологии API, такие как REST, GraphQL и gRPC.
 
-## What's an API?
+## Что такое API?
 
-Before we even get into API technologies, let's first understand what is an API.
+Прежде чем мы вообще начнем говорить о технологиях API, давайте сначала разберемся, что такое API.
 
-API stands for Application Programming Interface. It is a set of definitions and protocols for building and integrating application software. It's sometimes referred to as a contract between an information provider and an information user establishing the content required from the producer and the content required by the consumer.
+API означает Application Programming Interface. Это набор определений и протоколов для создания и интеграции прикладного программного обеспечения. Иногда его называют контрактом между поставщиком информации и пользователем информации, устанавливающим содержание, необходимое от производителя, и содержание, необходимое потребителю.
 
-In other words, if you want to interact with a computer or system to retrieve information or perform a function, an API helps you communicate what you want to that system so it can understand and complete the request.
+Другими словами, если вы хотите взаимодействовать с компьютером или системой для извлечения информации или выполнения функции, API помогает вам передать этому системе то, что вы хотите, чтобы она поняла и выполнела запрос.
 
 ## REST
 
-A [REST API](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm) (also known as RESTful API) is an application programming interface that conforms to the constraints of REST architectural style and allows for interaction with RESTful web services. REST stands for Representational State Transfer and it was first introduced by [Roy Fielding](https://roy.gbiv.com) in the year 2000.
+[REST API](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm) (также известный как RESTful API) - это интерфейс прикладного программирования, который соответствует ограничениям архитектурного стиля REST и позволяет взаимодействовать с RESTful веб-сервисами. REST означает Representational State Transfer и был впервые представлен [Роем Филдингом](https://roy.gbiv.com) в 2000 году.
 
-_In REST API, the fundamental unit is a resource._
+_В REST API фундаментальной единицей является ресурс._
 
-### Concepts
+### Концепции
 
-Let's discuss some concepts of a RESTful API.
+Давайте обсудим некоторые концепции RESTful API.
 
-**Constraints**
+**Ограничения**
 
-In order for an API to be considered _RESTful_, it has to conform to these architectural constraints:
+Чтобы API могло считаться _RESTful_, оно должно соответствовать следующим архитектурным ограничениям:
 
-- **Uniform Interface**: There should be a uniform way of interacting with a given server.
-- **Client-Server**: A client-server architecture managed through HTTP.
-- **Stateless**: No client context shall be stored on the server between requests.
-- **Cacheable**: Every response should include whether the response is cacheable or not and for how much duration responses can be cached at the client-side.
-- **Layered system**: An application architecture needs to be composed of multiple layers.
-- **Code on demand**: Return executable code to support a part of your application. _(optional)_
+- **Единый интерфейс**: Должен существовать единый способ взаимодействия с данным сервером.
+- **Клиент-Сервер**: Архитектура клиент-сервер управляется через HTTP.
+- **Без состояния**: На сервере не должно храниться состояние клиента между запросами.
+- **Кэшируемость**: Каждый ответ должен содержать информацию о том, является ли ответ кэшируемым или нет, и на какой период времени ответы могут быть закэшированы на стороне клиента.
+- **Слоистая система**: Архитектура приложения должна быть составлена из нескольких уровней.
+- **Код по требованию**: Возвращать исполняемый код для поддержки части вашего приложения. _(необязательно)_
 
-**HTTP Verbs**
+**HTTP-глаголы**
 
-HTTP defines a set of request methods to indicate the desired action to be performed for a given resource. Although they can also be nouns, these request methods are sometimes referred to as _HTTP verbs_. Each of them implements a different semantic, but some common features are shared by a group of them.
+HTTP определяет набор методов запроса, чтобы указать желаемое действие для заданного ресурса. Хотя они также могут быть существительными, эти методы запроса иногда называют _HTTP-глаголами_. Каждый из них реализует разную семантику, но некоторые общие функции разделяются группой из них.
 
-Below are some commonly used HTTP verbs:
+Ниже приведены некоторые часто используемые HTTP-глаголы:
 
-- **GET**: Request a representation of the specified resource.
-- **HEAD**: Response is identical to a `GET` request, but without the response body.
-- **POST**: Submits an entity to the specified resource, often causing a change in state or side effects on the server.
-- **PUT**: Replaces all current representations of the target resource with the request payload.
-- **DELETE**: Deletes the specified resource.
-- **PATCH**: Applies partial modifications to a resource.
+- **GET**: Запрашивает представление указанного ресурса.
+- **HEAD**: Ответ идентичен запросу `GET`, но без тела ответа.
+- **POST**: Отправляет сущность на указанный ресурс, часто вызывая изменение состояния или побочные эффекты на сервере.
+- **PUT**: Заменяет все текущие представления целевого ресурса данными запроса.
+- **DELETE**: Удаляет указанный ресурс.
+- **PATCH**: Применяет частичные модификации к ресурсу.
 
-**HTTP response codes**
+**Коды ответов HTTP**
 
-[HTTP response status codes](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes) indicate whether a specific HTTP request has been successfully completed.
+[Коды состояния ответа HTTP](https://ru.wikipedia.org/wiki/Список_кодов_состояния_HTTP) указывают, был ли успешно завершен определенный HTTP-запрос.
 
-There are five classes defined by the standard:
+Стандарт определяет пять классов:
 
-- 1xx - Informational responses.
-- 2xx - Successful responses.
-- 3xx - Redirection responses.
-- 4xx - Client error responses.
-- 5xx - Server error responses.
+- 1xx - Информационные ответы.
+- 2xx - Успешные ответы.
+- 3xx - Ответы о перенаправлении.
+- 4xx - Ошибки клиента.
+- 5xx - Ошибки сервера.
 
-For example, HTTP 200 means that the request was successful.
+Например, HTTP 200 означает, что запрос был успешным.
 
-### Advantages
+### Преимущества
 
-Let's discuss some advantages of REST API:
+Давайте обсудим некоторые преимущества REST API:
 
-- Simple and easy to understand.
-- Flexible and portable.
-- Good caching support.
-- Client and server are decoupled.
+- Простой и понятный.
+- Гибкий и переносимый.
+- Хорошая поддержка кэширования.
+- Клиент и сервер разнесены в пространстве.
 
-### Disadvantages
+### Недостатки
 
-Let's discuss some disadvantages of REST API:
+Давайте обсудим некоторые недостатки REST API:
 
-- Over-fetching of data.
-- Sometimes multiple round trips to the server are required.
+- Избыточное получение данных.
+- Иногда требуются несколько обращений к серверу.
 
-### Use cases
+### Сценарии использования
 
-REST APIs are pretty much used universally and are the default standard for designing APIs. Overall REST APIs are quite flexible and can fit almost all scenarios.
+REST API используются практически всюду и являются стандартом по умолчанию для проектирования API. В целом REST API достаточно гибки и могут подходить практически ко всем сценариям.
 
-### Example
+### Пример
 
-Here's an example usage of a REST API that operates on a **users** resource.
+Вот пример использования REST API, который работает с ресурсом **пользователей**.
 
-| URI           | HTTP verb | Description         |
-| ------------- | --------- | ------------------- |
-| /users        | GET       | Get all users       |
-| /users/\{id\} | GET       | Get a user by id    |
-| /users        | POST      | Add a new user      |
-| /users/\{id\} | PATCH     | Update a user by id |
-| /users/\{id\} | DELETE    | Delete a user by id |
+| URI           | HTTP-глагол | Описание              |
+| ------------- | ----------- | --------------------- |
+| /users        | GET         | Получить всех пользователей |
+| /users/\{id\} | GET         | Получить пользователя по идентификатору |
+| /users        | POST        | Добавить нового пользователя |
+| /users/\{id\} | PATCH       | Обновить пользователя по идентификатору |
+| /users/\{id\} | DELETE      | Удалить пользователя по идентификатору |
 
-_There is so much more to learn when it comes to REST APIs, I will highly recommend looking into [Hypermedia as the Engine of Application State (HATEOAS)](https://en.wikipedia.org/wiki/HATEOAS)._
+_Есть так много, что можно узнать о REST API, я настоятельно рекомендую изучить [Hypermedia as the Engine of Application State (HATEOAS)](https://en.wikipedia.org/wiki/HATEOAS)._
 
 ## GraphQL
 
-[GraphQL](https://graphql.org) is a query language and server-side runtime for APIs that prioritizes giving clients exactly the data they request and no more. It was developed by [Facebook](https://engineering.fb.com) and later open-sourced in 2015.
+[GraphQL](https://graphql.org) - это язык запросов и серверный рантайм для API, который приоритизирует предоставление клиентам ровно тех данных, которые они запрашивают, и ни больше. Он был разработан [Facebook](https://engineering.fb.com) и позже был опубликован как open-source в 2015 году.
 
-GraphQL is designed to make APIs fast, flexible, and developer-friendly. Additionally, GraphQL gives API maintainers the flexibility to add or deprecate fields without impacting existing queries. Developers can build APIs with whatever methods they prefer, and the GraphQL specification will ensure they function in predictable ways to clients.
+GraphQL разработан для создания быстрых, гибких и удобных для разработчиков API. Кроме того, GraphQL дает разработчикам API гибкость добавлять или устаревать поля без влияния на существующие запросы. Разработчики могут создавать API с использованием любых методов, которые им нравятся, и спецификация GraphQL гарантирует, что они будут функционировать в предсказуемых для клиентов способах.
 
-_In GraphQL, the fundamental unit is a query._
+_В GraphQL фундаментальной единицей является запрос._
 
-### Concepts
+### Концепции
 
-Let's briefly discuss some key concepts in GraphQL:
+Давайте кратко обсудим некоторые ключевые концепции в GraphQL:
 
-**Schema**
+**Схема**
 
-A GraphQL schema describes the functionality clients can utilize once they connect to the GraphQL server.
+Схема GraphQL описывает функциональность, которую клиенты могут использовать после подключения к серверу GraphQL.
 
-**Queries**
+**Запросы**
 
-A query is a request made by the client. It can consist of fields and arguments for the query. The operation type of a query can also be a [mutation](https://graphql.org/learn/queries/#mutations) which provides a way to modify server-side data.
+Запрос - это запрос, сделанный клиентом. Он может состоять из полей и аргументов для запроса. Тип операции запроса также может быть [мутацией](https://graphql.org/learn/queries/#mutations), которая предоставляет способ изменять данные на стороне сервера.
 
-**Resolvers**
+**Резолверы**
 
-Resolver is a collection of functions that generate responses for a GraphQL query. In simple terms, a resolver acts as a GraphQL query handler.
+Резолвер - это набор функций, которые генерируют ответы на запрос GraphQL. Простыми словами, резолвер действует как обработчик запроса GraphQL.
 
-### Advantages
+### Преимущества
 
-Let's discuss some advantages of GraphQL:
+Давайте обсудим некоторые преимущества GraphQL:
 
-- Eliminates over-fetching of data.
-- Strongly defined schema.
-- Code generation support.
-- Payload optimization.
+- Исключает избыточное получение данных.
+- Сильно определенная схема.
+- Поддержка генерации кода.
+- Оптимизация нагрузки.
 
-### Disadvantages
+### Недостатки
 
-Let's discuss some disadvantages of GraphQL:
+Давайте обсудим некоторые недостатки GraphQL:
 
-- Shifts complexity to server-side.
-- Caching becomes hard.
-- Versioning is ambiguous.
-- N+1 problem.
+- Переносит сложность на сторону сервера.
+- Кэширование становится сложным.
+- Неоднозначность при версионировании.
+- Проблема N+1.
 
-### Use cases
+### Сценарии использования
 
-GraphQL proves to be essential in the following scenarios:
+GraphQL оказывается важным в следующих сценариях:
 
-- Reducing app bandwidth usage as we can query multiple resources in a single query.
-- Rapid prototyping for complex systems.
-- When we are working with a graph-like data model.
+- Сокращение использования полосы пропускания приложением, поскольку мы можем запрашивать несколько ресурсов одним запросом.
+- Быстрое прототипирование сложных систем.
+- Когда мы работаем с моделью данных, похожей на граф.
 
-### Example
+### Пример
 
-Here's a GraphQL schema that defines a `User` type and a `Query` type.
+Вот схема GraphQL, которая определяет тип `User` и тип `Query`.
 
 ```graphql
 type Query {
@@ -2763,7 +2763,7 @@ type User {
 }
 ```
 
-Using the above schema, the client can request the required fields easily without having to fetch the entire resource or guess what the API might return.
+Используя вышеуказанную схему, клиент может легко запросить необходимые поля, не загружая всего ресурса или не догадываясь о том, что может вернуть API.
 
 ```graphql
 {
@@ -2775,7 +2775,7 @@ Using the above schema, the client can request the required fields easily withou
 }
 ```
 
-This will give the following response to the client.
+Это даст следующий ответ клиенту.
 
 ```json
 {
@@ -2787,54 +2787,54 @@ This will give the following response to the client.
 }
 ```
 
-_Learn more about GraphQL at [graphql.org](https://graphql.org)._
+_Узнайте больше о GraphQL на [graphql.org](https://graphql.org)._
 
 ## gRPC
 
-[gRPC](https://grpc.io) is a modern open-source high-performance [Remote Procedure Call (RPC)](https://en.wikipedia.org/wiki/Remote_procedure_call) framework that can run in any environment. It can efficiently connect services in and across data centers with pluggable support for load balancing, tracing, health checking, authentication and much more.
+[gRPC](https://grpc.io) - это современный открытый высокопроизводительный [Remote Procedure Call (RPC)](https://en.wikipedia.org/wiki/Remote_procedure_call) фреймворк, который может работать в любой среде. Он эффективно соединяет службы внутри и между центрами обработки данных с поддержкой подключаемых модулей для балансировки нагрузки, трассировки, проверки состояния, аутентификации и многого другого.
 
-### Concepts
+### Концепции
 
-Let's discuss some key concepts of gRPC.
+Давайте обсудим некоторые ключевые концепции gRPC.
 
-**Protocol buffers**
+**Протокольные буферы**
 
-Protocol buffers provide a language and platform-neutral extensible mechanism for serializing structured data in a forward and backward-compatible way. It's like JSON, except it's smaller and faster, and it generates native language bindings.
+Протокольные буферы предоставляют языково- и платформонезависимый механизм для сериализации структурированных данных в обратно и вперед совместимом формате. Это похоже на JSON, за исключением того, что оно меньше по размеру и быстрее, а также генерирует привязки к языкам программирования.
 
-**Service definition**
+**Определение службы**
 
-Like many RPC systems, gRPC is based on the idea of defining a service and specifying the methods that can be called remotely with their parameters and return types. gRPC uses protocol buffers as the [Interface Definition Language (IDL)](https://en.wikipedia.org/wiki/Interface_description_language) for describing both the service interface and the structure of the payload messages.
+Как и многие другие системы RPC, gRPC основан на идее определения службы и указания методов, которые могут быть вызваны удаленно с их параметрами и типами возвращаемых значений. gRPC использует протокольные буферы в качестве [языка описания интерфейса (IDL)](https://en.wikipedia.org/wiki/Interface_description_language) для описания как интерфейса службы, так и структуры сообщений данных.
 
-### Advantages
+### Преимущества
 
-Let's discuss some advantages of gRPC:
+Давайте обсудим некоторые преимущества gRPC:
 
-- Lightweight and efficient.
-- High performance.
-- Built-in code generation support.
-- Bi-directional streaming.
+- Легковесность и эффективность.
+- Высокая производительность.
+- Встроенная поддержка генерации кода.
+- Двунаправленный поток данных.
 
-### Disadvantages
+### Недостатки
 
-Let's discuss some disadvantages of gRPC:
+Давайте обсудим некоторые недостатки gRPC:
 
-- Relatively new compared to REST and GraphQL.
-- Limited browser support.
-- Steeper learning curve.
-- Not human readable.
+- Относительно новый по сравнению с REST и GraphQL.
+- Ограниченная поддержка браузера.
+- Более крутой кривой обучения.
+- Не читаем для человека.
 
-### Use cases
+### Сценарии использования
 
-Below are some good use cases for gRPC:
+Ниже приведены некоторые хорошие сценарии использования gRPC:
 
-- Real-time communication via bi-directional streaming.
-- Efficient inter-service communication in microservices.
-- Low latency and high throughput communication.
-- Polyglot environments.
+- Реальное время общение через двунаправленный поток.
+- Эффективное межсервисное взаимодействие в микросервисах.
+- Низкая задержка и высокая пропускная способность общения.
+- Полиглотные среды.
 
-### Example
+## Пример
 
-Here's a basic example of a gRPC service defined in a `*.proto` file. Using this definition, we can easily code generate the `HelloService` service in the programming language of our choice.
+Вот базовый пример службы gRPC, определенной в файле `*.proto`. Используя эту определение, мы легко можем сгенерировать код службы `HelloService` на языке программирования нашего выбора.
 
 ```protobuf
 service HelloService {
@@ -2852,337 +2852,337 @@ message HelloResponse {
 
 ## REST vs GraphQL vs gRPC
 
-Now that we know how these API designing techniques work, let's compare them based on the following parameters:
+Теперь, когда мы знаем, как работают эти техники проектирования API, давайте сравним их на основе следующих параметров:
 
-- Will it cause tight coupling?
-- How _chatty_ (distinct API calls to get needed information) are the APIs?
-- What's the performance like?
-- How complex is it to integrate?
-- How well does the caching work?
-- Built-in tooling and code generation?
-- What's API discoverability like?
-- How easy is it to version APIs?
+- Будет ли это вызывать тесную связь?
+- Насколько _многообещающими_ (различные вызовы API, чтобы получить нужную информацию) являются API?
+- Какова производительность?
+- Насколько сложно интегрировать?
+- Насколько хорошо работает кэширование?
+- Есть ли встроенные инструменты и генерация кода?
+- Каково обнаружение API?
+- Насколько легко версионировать API?
 
-| Type    | Coupling | Chattiness | Performance | Complexity | Caching | Codegen | Discoverability | Versioning |
-| ------- | -------- | ---------- | ----------- | ---------- | ------- | ------- | --------------- | ---------- |
-| REST    | Low      | High       | Good        | Medium     | Great   | Bad     | Good            | Easy       |
-| GraphQL | Medium   | Low        | Good        | High       | Custom  | Good    | Good            | Custom     |
-| gRPC    | High     | Medium     | Great       | Low        | Custom  | Great   | Bad             | Hard       |
+| Тип     | Связь    | Многообещание | Производительность | Сложность | Кэширование | Генерация кода | Обнаружение | Версионность |
+| ------- | -------- | ------------- | ------------------ | --------- | ----------- | -------------- | ----------- | ------------ |
+| REST    | Низкая   | Высокое      | Хорошая            | Средняя   | Отличное    | Плохая         | Хорошее     | Легко        |
+| GraphQL | Средняя  | Низкое       | Хорошая            | Высокая   | Пользовательское | Хорошая   | Хорошее     | Пользовательское |
+| gRPC    | Высокая  | Среднее      | Отличная           | Низкая    | Пользовательское | Отличная   | Плохое       | Трудно       |
 
-### Which API technology is better?
+### Какая технология API лучше?
 
-Well, the answer is none of them. There is no silver bullet as each of these technologies has its own advantages and disadvantages. Users only care about using our APIs in a consistent way, so make sure to focus on your domain and requirements when designing your API.
+Честно говоря, ни одна из них. Нет универсального решения, поскольку каждая из этих технологий имеет свои преимущества и недостатки. Пользователи заботятся только о том, чтобы использовать наши API согласованным образом, поэтому обязательно сосредотачивайтесь на вашем домене и требованиях при проектировании вашего API.
 
-# Long polling, WebSockets, Server-Sent Events (SSE)
+# Длинные запросы, WebSockets, события, отправляемые сервером (SSE)
 
-Web applications were initially developed around a client-server model, where the web client is always the initiator of transactions like requesting data from the server. Thus, there was no mechanism for the server to independently send, or push, data to the client without the client first making a request. Let's discuss some approaches to overcome this problem.
+Веб-приложения изначально были разработаны вокруг модели клиент-сервер, где веб-клиент всегда является инициатором транзакций, таких как запрос данных с сервера. Таким образом, не было механизма для того, чтобы сервер самостоятельно отправлял или передавал данные клиенту без того, чтобы клиент сначала отправил запрос. Давайте обсудим некоторые подходы для преодоления этой проблемы.
 
-## Long polling
+## Длинные запросы
 
-HTTP Long polling is a technique used to push information to a client as soon as possible from the server. As a result, the server does not have to wait for the client to send a request.
+HTTP длинные запросы - это техника, используемая для отправки информации клиенту как можно скорее от сервера. В результате серверу не нужно ждать, пока клиент отправит запрос.
 
-In Long polling, the server does not close the connection once it receives a request from the client. Instead, the server responds only if any new message is available or a timeout threshold is reached.
+При длинных запросах сервер не закрывает соединение, как только он получает запрос от клиента. Вместо этого сервер отвечает только в случае наличия нового сообщения или достижения порога тайм-аута.
 
 ![long-polling](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/long-polling-websockets-server-sent-events/long-polling.png)
 
-Once the client receives a response, it immediately sends a new request to the server to have a new pending connection to send data to the client, and the operation is repeated. With this approach, the server emulates a real-time server push feature.
+Как только клиент получает ответ, он сразу отправляет новый запрос серверу, чтобы иметь новое ожидающее соединение для отправки данных клиенту, и операция повторяется. При таком подходе сервер эмулирует функцию реального времени.
 
-### Working
+### Работа
 
-Let's understand how long polling works:
+Давайте разберем, как работает длинный запрос:
 
-1. The client makes an initial request and waits for a response.
-2. The server receives the request and delays sending anything until an update is available.
-3. Once an update is available, the response is sent to the client.
-4. The client receives the response and makes a new request immediately or after some defined interval to establish a connection again.
+1. Клиент отправляет начальный запрос и ожидает ответа.
+2. Сервер получает запрос и задерживает отправку чего-либо, пока обновление не будет доступно.
+3. Как только обновление становится доступным, ответ отправляется клиенту.
+4. Клиент получает ответ и сразу отправляет новый запрос или после определенного интервала, чтобы установить соединение снова.
 
-### Advantages
+### Преимущества
 
-Here are some advantages of long polling:
+Вот некоторые преимущества длинных запросов:
 
-- Easy to implement, good for small-scale projects.
-- Nearly universally supported.
+- Легко реализуемы, хороши для небольших проектов.
+- Практически универсально поддерживаемы.
 
-### Disadvantages
+### Недостатки
 
-A major downside of long polling is that it is usually not scalable. Below are some of the other reasons:
+Основным недостатком длинных запросов является то, что они обычно не масштабируются. Вот еще несколько причин:
 
-- Creates a new connection each time, which can be intensive on the server.
-- Reliable message ordering can be an issue for multiple requests.
-- Increased latency as the server needs to wait for a new request.
+- Создает новое соединение каждый раз, что может быть нагрузочным для сервера.
+- Надежная упорядоченность сообщений может быть проблемой при множественных запросах.
+- Увеличенная задержка, так как сервер должен ждать нового запроса.
 
 ## WebSockets
 
-WebSocket provides full-duplex communication channels over a single TCP connection. It is a persistent connection between a client and a server that both parties can use to start sending data at any time.
+WebSocket предоставляет двусторонние коммуникационные каналы через одно соединение TCP. Это постоянное соединение между клиентом и сервером, которое обе стороны могут использовать для начала отправки данных в любое время.
 
-The client establishes a WebSocket connection through a process known as the WebSocket handshake. If the process succeeds, then the server and client can exchange data in both directions at any time. The WebSocket protocol enables the communication between a client and a server with lower overheads, facilitating real-time data transfer from and to the server.
+Клиент устанавливает соединение WebSocket через процесс, известный как рукопожатие WebSocket. Если процесс завершается успешно, то сервер и клиент могут обмениваться данными в обе стороны в любое время. Протокол WebSocket обеспечивает коммуникацию между клиентом и сервером с более низкими накладными расходами, облегчая передачу данных в реальном времени от и к серверу.
 
 ![websockets](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/long-polling-websockets-server-sent-events/websockets.png)
 
-This is made possible by providing a standardized way for the server to send content to the client without being asked and allowing for messages to be passed back and forth while keeping the connection open.
+### Принцип работы
 
-### Working
+Давайте поймем, как работают веб-сокеты:
 
-Let's understand how WebSockets work:
+1. Клиент инициирует процесс рукопожатия WebSocket, отправляя запрос.
+2. Запрос также содержит заголовок [HTTP Upgrade](https://en.wikipedia.org/wiki/HTTP/1.1_Upgrade_header), который позволяет переключить запрос на протокол WebSocket (`ws://`).
+3. Сервер отправляет ответ клиенту, подтверждая запрос рукопожатия WebSocket.
+4. WebSocket-соединение будет открыто, как только клиент получит успешный ответ на рукопожатие.
+5. Теперь клиент и сервер могут начать отправлять данные в обоих направлениях, позволяя реальному времени общения.
+6. Соединение закрывается, как только сервер или клиент решают закрыть его.
 
-1. The client initiates a WebSocket handshake process by sending a request.
-2. The request also contains an [HTTP Upgrade](https://en.wikipedia.org/wiki/HTTP/1.1_Upgrade_header) header that allows the request to switch to the WebSocket protocol (`ws://`).
-3. The server sends a response to the client, acknowledging the WebSocket handshake request.
-4. A WebSocket connection will be opened once the client receives a successful handshake response.
-5. Now the client and server can start sending data in both directions allowing real-time communication.
-6. The connection is closed once the server or the client decides to close the connection.
+### Преимущества
 
-### Advantages
+Ниже приведены некоторые преимущества веб-сокетов:
 
-Below are some advantages of WebSockets:
+- Полудуплексная асинхронная передача сообщений.
+- Лучшая модель безопасности на основе происхождения.
+- Легкий для клиента и сервера.
 
-- Full-duplex asynchronous messaging.
-- Better origin-based security model.
-- Lightweight for both client and server.
+### Недостатки
 
-### Disadvantages
+Давайте обсудим некоторые недостатки веб-сокетов:
 
-Let's discuss some disadvantages of WebSockets:
-
-- Terminated connections aren't automatically recovered.
-- Older browsers don't support WebSockets (becoming less relevant).
+- Прерванные соединения не восстанавливаются автоматически.
+- Старые браузеры не поддерживают веб-сокеты (становятся менее актуальными).
 
 ## Server-Sent Events (SSE)
 
-Server-Sent Events (SSE) is a way of establishing long-term communication between client and server that enables the server to proactively push data to the client.
+Server-Sent Events (SSE) - это способ установления долгосрочного общения между клиентом и сервером, который позволяет серверу активно отправлять данные клиенту.
 
 ![server-sent-events](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-III/long-polling-websockets-server-sent-events/server-sent-events.png)
 
-It is unidirectional, meaning once the client sends the request it can only receive the responses without the ability to send new requests over the same connection.
+Это однонаправленное соединение, что означает, что после того, как клиент отправил запрос, он может только получать ответы без возможности отправлять новые запросы через то же самое соединение.
 
-### Working
+### Принцип работы
 
-Let's understand how server-sent events work:
+Давайте поймем, как работают события, отправляемые сервером:
 
-1. The client makes a request to the server.
-2. The connection between client and server is established and it remains open.
-3. The server sends responses or events to the client when new data is available.
+1. Клиент делает запрос на сервер.
+2. Устанавливается соединение между клиентом и сервером, и оно остается открытым.
+3. Сервер отправляет ответы или события клиенту, когда новые данные доступны.
 
-### Advantages
+### Преимущества
 
-- Simple to implement and use for both client and server.
-- Supported by most browsers.
-- No trouble with firewalls.
+- Простота в реализации и использовании как для клиента, так и для сервера.
+- Поддерживается большинством браузеров.
+- Нет проблем с брандмауэрами.
 
-### Disadvantages
+### Недостатки
 
-- Unidirectional nature can be limiting.
-- Limitation for the maximum number of open connections.
-- Does not support binary data.
+- Однонаправленная природа может быть ограничивающей.
+- Ограничение на максимальное количество открытых соединений.
+- Не поддерживает двоичные данные.
 
 # Geohashing and Quadtrees
 
-## Geohashing
+## Геохеширование
 
-Geohashing is a [geocoding](https://en.wikipedia.org/wiki/Address_geocoding) method used to encode geographic coordinates such as latitude and longitude into short alphanumeric strings. It was created by [Gustavo Niemeyer](https://twitter.com/gniemeyer) in 2008.
+Геохеширование - это метод [геокодирования](https://en.wikipedia.org/wiki/Address_geocoding), используемый для кодирования географических координат, таких как широта и долгота, в короткие алфанумерические строки. Он был создан [Густаво Ниемеером](https://twitter.com/gniemeyer) в 2008 году.
 
-For example, San Francisco with coordinates `37.7564, -122.4016` can be represented in geohash as `9q8yy9mf`.
+Например, Сан-Франциско с координатами `37.7564, -122.4016` может быть представлен в виде геохеша как `9q8yy9mf`.
 
-### How does Geohashing work?
+### Как работает геохеширование?
 
-Geohash is a hierarchical spatial index that uses Base-32 alphabet encoding, the first character in a geohash identifies the initial location as one of the 32 cells. This cell will also contain 32 cells. This means that to represent a point, the world is recursively divided into smaller and smaller cells with each additional bit until the desired precision is attained. The precision factor also determines the size of the cell.
+Геохеш - это иерархический пространственный индекс, который использует кодирование алфавитом Base-32, первый символ в геохеше идентифицирует начальное местоположение как одну из 32 ячеек. Эта ячейка также будет содержать 32 ячейки. Это означает, что для представления точки мир рекурсивно делится на все более мелкие ячейки с каждым дополнительным битом, пока не будет достигнута желаемая точность. Фактор точности также определяет размер ячейки.
 
 ![geohashing](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/geohashing-and-quadtrees/geohashing.png)
 
-Geohashing guarantees that points are spatially closer if their Geohashes share a longer prefix which means the more characters in the string, the more precise the location. For example, geohashes `9q8yy9mf` and `9q8yy9vx` are spatially closer as they share the prefix `9q8yy9`.
+Геохеширование гарантирует, что точки пространственно ближе, если их геохеши имеют общий более длинный префикс, что означает, что чем больше символов в строке, тем более точное местоположение. Например, геохеши `9q8yy9mf` и `9q8yy9vx` пространственно ближе, так как они имеют общий префикс `9q8yy9`.
 
-Geohashing can also be used to provide a degree of anonymity as we don't need to expose the exact location of the user because depending on the length of the geohash we just know they are somewhere within an area.
+Геохеширование также может использоваться для обеспечения степени анонимности, поскольку нам не нужно раскрывать точное местоположение пользователя, потому что в зависимости от длины геохеша мы просто знаем, что они находятся где-то в области.
 
-The cell sizes of the geohashes of different lengths are as follows:
+Размеры ячеек геохешей различной длины следующие:
 
-| Geohash length | Cell width | Cell height |
-| -------------- | ---------- | ----------- |
-| 1              | 5000 km    | 5000 km     |
-| 2              | 1250 km    | 1250 km     |
-| 3              | 156 km     | 156 km      |
-| 4              | 39.1 km    | 19.5 km     |
-| 5              | 4.89 km    | 4.89 km     |
-| 6              | 1.22 km    | 0.61 km     |
-| 7              | 153 m      | 153 m       |
-| 8              | 38.2 m     | 19.1 m      |
-| 9              | 4.77 m     | 4.77 m      |
-| 10             | 1.19 m     | 0.596 m     |
-| 11             | 149 mm     | 149 mm      |
-| 12             | 37.2 mm    | 18.6 mm     |
+| Длина геохеша | Ширина ячейки | Высота ячейки |
+| -------------- | ------------- | ------------- |
+| 1              | 5000 км       | 5000 км       |
+| 2              | 1250 км       | 1250 км       |
+| 3              | 156 км        | 156 км        |
+| 4              | 39.1 км       | 19.5 км       |
+| 5              | 4.89 км       | 4.89 км       |
+| 6              | 1.22 км       | 0.61 км       |
+| 7              | 153 м         | 153 м         |
+| 8              | 38.2 м        | 19.1 м        |
+| 9              | 4.77 м        | 4.77 м        |
+| 10             | 1.19 м        | 0.596 м       |
+| 11             | 149 мм        | 149 мм        |
+| 12             | 37.2 мм       | 18.6 мм       |
 
-### Use cases
+### Применение
 
-Here are some common use cases for Geohashing:
+Вот некоторые распространенные применения геохеширования:
 
-- It is a simple way to represent and store a location in a database.
-- It can also be shared on social media as URLs since it is easier to share, and remember than latitudes and longitudes.
-- We can efficiently find the nearest neighbors of a point through very simple string comparisons and efficient searching of indexes.
+- Это простой способ представления и сохранения местоположения в базе данных.
+- Его также можно делить в социальных сетях как URL, так как это проще делиться и запоминать, чем широта и долгота.
+- Мы можем быстро найти ближайших соседей точки через простое сравнение строк и быстрый поиск в индексах.
 
-### Examples
+### Примеры
 
-Geohashing is widely used and it is supported by popular databases.
+Геохеширование широко используется и поддерживается популярными базами данных.
 
 - [MySQL](https://www.mysql.com)
 - [Redis](http://redis.io)
 - [Amazon DynamoDB](https://aws.amazon.com/dynamodb)
 - [Google Cloud Firestore](https://cloud.google.com/firestore)
 
-## Quadtrees
+## Кваддеревья
 
-A quadtree is a tree data structure in which each internal node has exactly four children. They are often used to partition a two-dimensional space by recursively subdividing it into four quadrants or regions. Each child or leaf node stores spatial information. Quadtrees are the two-dimensional analog of [Octrees](https://en.wikipedia.org/wiki/Octree) which are used to partition three-dimensional space.
+Кваддерево - это древовидная структура данных, в которой каждый внутренний узел имеет ровно четыре дочерних узла. Они часто используются для разделения двумерного пространства путем рекурсивного его подразделения на четыре квадранта или региона. Каждый дочерний или листовой узел хранит пространственную информацию. Кваддеревья являются двумерным аналогом [октодеревьев](https://en.wikipedia.org/wiki/Octree), которые используются для разделения трехмерного пространства.
 
 ![quadtree](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/geohashing-and-quadtrees/quadtree.png)
 
-### Types of Quadtrees
+### Типы кваддеревьев
 
-Quadtrees may be classified according to the type of data they represent, including areas, points, lines, and curves. The following are common types of quadtrees:
+Кваддеревья могут быть классифицированы в зависимости от типа данных, которые они представляют, включая области, точки, линии и кривые. Ниже приведены распространенные типы кваддеревьев:
 
-- Point quadtrees
-- Point-region (PR) quadtrees
-- Polygonal map (PM) quadtrees
-- Compressed quadtrees
-- Edge quadtrees
+- Кваддеревья точек
+- Кваддеревья точка-регион (PR)
+- Полигональные карты (PM) кваддеревьев
+- Сжатые кваддеревья
+- Кваддеревья ребер
 
-### Why do we need Quadtrees?
+### Зачем нам нужны кваддеревья?
 
-Aren't latitudes and longitudes enough? Why do we need quadtrees? While in theory using latitude and longitude we can determine things such as how close points are to each other using [euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance), for practical use cases it is simply not scalable because of its CPU-intensive nature with large data sets.
+Разве широты и долготы недостаточны? Зачем нам кваддеревья? Хотя в теории, используя широту и долготу, мы можем определить такие вещи, как близость точек друг к другу, используя [евклидово расстояние](https://en.wikipedia.org/wiki/Euclidean_distance), для практических случаев использование этого просто не масштабируется из-за его вычислительно интенсивного характера с большими объемами данных.
 
 ![quadtree-subdivision](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/geohashing-and-quadtrees/quadtree-subdivision.png)
 
-Quadtrees enable us to search points within a two-dimensional range efficiently, where those points are defined as latitude/longitude coordinates or as cartesian (x, y) coordinates. Additionally, we can save further computation by only subdividing a node after a certain threshold. And with the application of mapping algorithms such as the [Hilbert curve](https://en.wikipedia.org/wiki/Hilbert_curve), we can easily improve range query performance.
+Кваддеревья позволяют нам эффективно искать точки в двумерном диапазоне, где эти точки определяются координатами широты/долготы или как декартовы (x, y) координаты. Кроме того, мы можем сэкономить дальнейшие вычисления, разделив узел только после определенного порога. И с применением алгоритмов сопоставления, таких как [кривая Хилберта](https://en.wikipedia.org/wiki/Hilbert_curve), мы легко можем улучшить производительность запроса диапазона.
 
-### Use cases
+### Примеры использования
 
-Below are some common uses of quadtrees:
+Ниже приведены некоторые распространенные случаи использования кваддеревьев:
 
-- Image representation, processing, and compression.
-- Spacial indexing and range queries.
-- Location-based services like Google Maps, Uber, etc.
-- Mesh generation and computer graphics.
-- Sparse data storage.
+- Представление изображений, их обработка и сжатие.
+- Пространственный индексирование и запросы диапазонов.
+- Сервисы на основе местоположения, такие как Google Maps, Uber и т. д.
+- Генерация сеток и компьютерная графика.
+- Хранение разреженных данных.
 
-# Circuit breaker
+# Отключение цепи (Circuit breaker)
 
-The circuit breaker is a design pattern used to detect failures and encapsulates the logic of preventing a failure from constantly recurring during maintenance, temporary external system failure, or unexpected system difficulties.
+Отключение цепи - это шаблон проектирования, используемый для обнаружения сбоев и инкапсуляции логики предотвращения повторяющихся сбоев во время обслуживания, временных сбоев во внешней системе или непредвиденных трудностей системы.
 
 ![circuit-breaker](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/circuit-breaker/circuit-breaker.png)
 
-The basic idea behind the circuit breaker is very simple. We wrap a protected function call in a circuit breaker object, which monitors for failures. Once the failures reach a certain threshold, the circuit breaker trips, and all further calls to the circuit breaker return with an error, without the protected call being made at all. Usually, we'll also want some kind of monitor alert if the circuit breaker trips.
+Основная идея, лежащая в основе отключения цепи, очень проста. Мы оборачиваем защищенный вызов функции в объект отключения цепи, который отслеживает сбои. Как только количество сбоев достигает определенного порога, отключение цепи срабатывает, и все последующие вызовы отключения цепи возвращаются с ошибкой, даже без выполнения защищенного вызова. Обычно мы также хотим получать какие-то уведомления в случае срабатывания отключения цепи.
 
-## Why do we need circuit breaking?
+## Зачем нам нужно отключение цепи?
 
-It's common for software systems to make remote calls to software running in different processes, probably on different machines across a network. One of the big differences between in-memory calls and remote calls is that remote calls can fail, or hang without a response until some timeout limit is reached. What's worse is if we have many callers on an unresponsive supplier, then we can run out of critical resources leading to cascading failures across multiple systems.
+Часто программные системы выполняют удаленные вызовы к программному обеспечению, работающему в разных процессах, вероятно, на разных машинах по сети. Одна из больших разниц между вызовами в памяти и удаленными вызовами заключается в том, что удаленные вызовы могут завершаться неудачей или повисать без ответа до достижения какого-либо временного предела ожидания. Еще хуже, если у нас много вызывающих на нереагирующем поставщике, то мы можем исчерпать критические ресурсы, что приведет к каскадным сбоям по всей системе.
 
-## States
+## Состояния
 
-Let's discuss circuit breaker states:
+Давайте обсудим состояния отключения цепи:
 
-### Closed
+### Закрыт
 
-When everything is normal, the circuit breakers remain closed, and all the request passes through to the services as normal. If the number of failures increases beyond the threshold, the circuit breaker trips and goes into an open state.
+Когда все нормально, отключения цепи остаются закрытыми, и все запросы проходят к сервисам как обычно. Если количество сбоев превышает порог, отключение цепи срабатывает и переходит в открытое состояние.
 
-### Open
+### Открыт
 
-In this state circuit breaker returns an error immediately without even invoking the services. The Circuit breakers move into the half-open state after a certain timeout period elapses. Usually, it will have a monitoring system where the timeout will be specified.
+В этом состоянии отключение цепи немедленно возвращает ошибку, даже не вызывая сервисы. Отключения цепи переходят в состояние полуоткрытого после истечения определенного периода времени ожидания. Обычно будет настроена система мониторинга, где будет указано время ожидания.
 
-### Half-open
+### Полуоткрытый
 
-In this state, the circuit breaker allows a limited number of requests from the service to pass through and invoke the operation. If the requests are successful, then the circuit breaker will go to the closed state. However, if the requests continue to fail, then it goes back to the open state.
+В этом состоянии отключение цепи позволяет ограниченному количеству запросов от сервиса пройти и выполнить операцию. Если запросы успешны, то отключение цепи перейдет в закрытое состояние. Однако, если запросы продолжают неудачными, то оно возвращается в открытое состояние.
 
-# Rate Limiting
+# Ограничение скорости
 
-Rate limiting refers to preventing the frequency of an operation from exceeding a defined limit. In large-scale systems, rate limiting is commonly used to protect underlying services and resources. Rate limiting is generally used as a defensive mechanism in distributed systems, so that shared resources can maintain availability. It also protects our APIs from unintended or malicious overuse by limiting the number of requests that can reach our API in a given period of time.
+Ограничение скорости относится к предотвращению частоты выполнения операции сверх заданного предела. В крупных системах ограничение скорости часто используется для защиты базовых сервисов и ресурсов. Ограничение скорости обычно используется в качестве защитного механизма в распределенных системах, чтобы общие ресурсы могли поддерживать доступность. Оно также защищает наши API от непреднамеренного или злонамеренного чрезмерного использования, ограничивая количество запросов, которые могут достигнуть нашего API за определенный период времени.
 
 ![rate-limiting](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/rate-limiting/rate-limiting.png)
 
-## Why do we need Rate Limiting?
+## Зачем нам нужно ограничение скорости?
 
-Rate limiting is a very important part of any large-scale system and it can be used to accomplish the following:
+Ограничение скорости является очень важной частью любой крупномасштабной системы и может использоваться для достижения следующих целей:
 
-- Avoid resource starvation as a result of Denial of Service (DoS) attacks.
-- Rate Limiting helps in controlling operational costs by putting a virtual cap on the auto-scaling of resources which if not monitored might lead to exponential bills.
-- Rate limiting can be used as defense or mitigation against some common attacks.
-- For APIs that process massive amounts of data, rate limiting can be used to control the flow of that data.
+- Избегание истощения ресурсов в результате атаки отказа в обслуживании (DoS).
+- Ограничение скорости помогает контролировать операционные затраты, устанавливая виртуальный предел на масштабирование ресурсов, что, если не контролировать, может привести к экспоненциальным счетам.
+- Ограничение скорости может использоваться в качестве защиты или смягчения некоторых общих атак.
+- Для API, обрабатывающих огромные объемы данных, ограничение скорости может использоваться для контроля потока этих данных.
 
-## Algorithms
+## Алгоритмы
 
-There are various algorithms for API rate limiting, each with its advantages and disadvantages. Let's briefly discuss some of these algorithms:
+Существуют различные алгоритмы ограничения скорости API, у каждого из которых есть свои преимущества и недостатки. Давайте кратко обсудим некоторые из этих алгоритмов:
 
-### Leaky Bucket
+### "Течущий" ведро (Leaky Bucket)
 
-Leaky Bucket is an algorithm that provides a simple, intuitive approach to rate limiting via a queue. When registering a request, the system appends it to the end of the queue. Processing for the first item on the queue occurs at a regular interval or first-in, first-out (FIFO). If the queue is full, then additional requests are discarded (or leaked).
+"Течущий" ведро - это алгоритм, который обеспечивает простой, интуитивно понятный подход к ограничению скорости с помощью очереди. При регистрации запроса система добавляет его в конец очереди. Обработка первого элемента в очереди происходит через определенный интервал времени или по принципу "первым пришел - первым обслужен" (FIFO). Если очередь заполнена, то дополнительные запросы отбрасываются (или "утекают").
 
-### Token Bucket
+### "Мешок" токенов (Token Bucket)
 
-Here we use a concept of a _bucket_. When a request comes in, a token from the bucket must be taken and processed. The request will be refused if no token is available in the bucket, and the requester will have to try again later. As a result, the token bucket gets refreshed after a certain time period.
+Здесь мы используем концепцию _ведра_. Когда поступает запрос, из ведра должен быть взят токен и обработан. Если в ведре нет доступных токенов, то запрос будет отклонен, и отправитель должен будет повторить попытку позже. После определенного временного периода ведро токенов обновляется.
 
-### Fixed Window
+### Фиксированное окно (Fixed Window)
 
-The system uses a window size of `n` seconds to track the fixed window algorithm rate. Each incoming request increments the counter for the window. It discards the request if the counter exceeds a threshold.
+Система использует размер окна в `n` секунд для отслеживания скорости алгоритма фиксированного окна. Каждый входящий запрос увеличивает счетчик для окна. Запрос отклоняется, если счетчик превышает пороговое значение.
 
-### Sliding Log
+### Скользящий журнал (Sliding Log)
 
-Sliding Log rate-limiting involves tracking a time-stamped log for each request. The system stores these logs in a time-sorted hash set or table. It also discards logs with timestamps beyond a threshold. When a new request comes in, we calculate the sum of logs to determine the request rate. If the request would exceed the threshold rate, then it is held.
+Ограничение скорости на основе скользящего журнала включает отслеживание временно отмеченного журнала для каждого запроса. Система хранит эти журналы в сортированном по времени хэш-наборе или таблице. Она также отбрасывает журналы с отметками времени, выходящими за пределы порога. Когда поступает новый запрос, мы вычисляем сумму журналов, чтобы определить скорость запроса. Если запрос превысил бы пороговую скорость, то он задерживается.
 
-### Sliding Window
+### Скользящее окно (Sliding Window)
 
-Sliding Window is a hybrid approach that combines the fixed window algorithm's low processing cost and the sliding log's improved boundary conditions. Like the fixed window algorithm, we track a counter for each fixed window. Next, we account for a weighted value of the previous window's request rate based on the current timestamp to smooth out bursts of traffic.
+Скользящее окно - это гибридный подход, который объединяет низкую стоимость обработки алгоритма фиксированного окна и улучшенные граничные условия скользящего журнала. Как и в алгоритме фиксированного окна, мы отслеживаем счетчик для каждого фиксированного окна. Затем мы учитываем взвешенное значение скорости запроса предыдущего окна на основе текущей отметки времени, чтобы сгладить всплески трафика.
 
-## Rate Limiting in Distributed Systems
+## Ограничение скорости в распределенных системах
 
-Rate Limiting becomes complicated when distributed systems are involved. The two broad problems that come with rate limiting in distributed systems are:
+Ограничение скорости становится сложным, когда в процессе участвуют распределенные системы. Два основных проблемных аспекта ограничения скорости в распределенных системах:
 
-### Inconsistencies
+### Несогласованность
 
-When using a cluster of multiple nodes, we might need to enforce a global rate limit policy. Because if each node were to track its rate limit, a consumer could exceed a global rate limit when sending requests to different nodes. The greater the number of nodes, the more likely the user will exceed the global limit.
+При использовании кластера из нескольких узлов может потребоваться применение глобальной политики ограничения скорости. Поскольку, если каждый узел отслеживает свое ограничение скорости, потребитель может превысить глобальное ограничение скорости при отправке запросов к разным узлам. Чем больше узлов, тем выше вероятность того, что пользователь превысит глобальный предел.
 
-The simplest way to solve this problem is to use sticky sessions in our load balancers so that each consumer gets sent to exactly one node but this causes a lack of fault tolerance and scaling problems. Another approach might be to use a centralized data store like [Redis](https://redis.io) but this will increase latency and cause race conditions.
+Простейший способ решения этой проблемы - использовать "приклеенные" сессии в наших балансировщиках нагрузки, чтобы каждому потребителю был отправлен ровно один узел, но это вызывает недостаток устойчивости к сбоям и проблемы масштабирования. Другой подход может заключаться в использовании централизованного хранилища данных, такого как [Redis](https://redis.io), но это увеличит задержку и вызовет состязательные ситуации.
 
-### Race Conditions
+### Состязательные ситуации
 
-This issue happens when we use a naive _"get-then-set"_ approach, in which we retrieve the current rate limit counter, increment it, and then push it back to the datastore. This model's problem is that additional requests can come through in the time it takes to perform a full cycle of read-increment-store, each attempting to store the increment counter with an invalid (lower) counter value. This allows a consumer to send a very large number of requests to bypass the rate limiting controls.
+Эта проблема возникает, когда мы используем наивный подход _"получить-затем-установить"_, при котором мы извлекаем текущий счетчик ограничения скорости, увеличиваем его, а затем возвращаем его обратно в хранилище данных. Проблема этой модели заключается в том, что дополнительные запросы могут поступить во время выполнения полного цикла чтения-увеличения-сохранения, каждый из которых пытается сохранить увеличенное значение счетчика с недействительным (меньшим) значением счетчика. Это позволяет потребителю отправить очень большое количество запросов, обходя контроль ограничения скорости.
 
-One way to avoid this problem is to use some sort of distributed locking mechanism around the key, preventing any other processes from accessing or writing to the counter. Though the lock will become a significant bottleneck and will not scale well. A better approach might be to use a _"set-then-get"_ approach, allowing us to quickly increment and check counter values without letting the atomic operations get in the way.
+Один из способов избежать этой проблемы - использовать некоторый механизм распределенной блокировки вокруг ключа, предотвращая доступ или запись к счетчику другим процессам. Хотя блокировка станет значительным узким местом и плохо масштабируется. Более хороший подход может заключаться в использовании подхода "установить-затем-получить", позволяющего нам быстро увеличивать и проверять значения счетчика без препятствий атомарных операций.
 
-# Service Discovery
+# Обнаружение сервисов
 
-Service discovery is the detection of services within a computer network. Service Discovery Protocol (SDP) is a networking standard that accomplishes the detection of networks by identifying resources.
+Обнаружение сервисов - это выявление сервисов в компьютерной сети. Протокол обнаружения сервисов (Service Discovery Protocol, SDP) является сетевым стандартом, который обеспечивает обнаружение сетей путем идентификации ресурсов.
 
-## Why do we need Service Discovery?
+## Зачем нам нужно обнаружение сервисов?
 
-In a monolithic application, services invoke one another through language-level methods or procedure calls. However, modern microservices-based applications typically run in virtualized or containerized environments where the number of instances of a service and their locations change dynamically. Consequently, we need a mechanism that enables the clients of service to make requests to a dynamically changing set of ephemeral service instances.
+В монолитном приложении сервисы вызывают друг друга через методы на уровне языка или вызовы процедур. Однако современные приложения, основанные на микросервисах, обычно запускаются в виртуализированных или контейнеризованных средах, где количество экземпляров сервиса и их местоположение динамически изменяются. Следовательно, нам нужен механизм, который позволяет клиентам сервиса делать запросы к динамически изменяющемуся набору временных экземпляров сервиса.
 
-## Implementations
+## Реализации
 
-There are two main service discovery patterns:
+Существуют две основные модели обнаружения сервисов:
 
-### Client-side discovery
+### Обнаружение на стороне клиента
 
-![client-side-service-discovery](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/service-discovery/client-side-service-discovery.png)
+![Обнаружение сервисов на стороне клиента](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/service-discovery/client-side-service-discovery.png)
 
-In this approach, the client obtains the location of another service by querying a service registry which is responsible for managing and storing the network locations of all the services.
+В этом подходе клиент получает местоположение другого сервиса, обратившись к реестру сервисов, который отвечает за управление и хранение сетевых местоположений всех сервисов.
 
-### Server-side discovery
+### Обнаружение на стороне сервера
 
-![server-side-service-discovery](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/service-discovery/server-side-service-discovery.png)
+![Обнаружение сервисов на стороне сервера](https://raw.githubusercontent.com/karanpratapsingh/portfolio/master/public/static/courses/system-design/chapter-IV/service-discovery/server-side-service-discovery.png)
 
-In this approach, we use an intermediate component such as a load balancer. The client makes a request to the service via a load balancer which then forwards the request to an available service instance.
+В этом подходе мы используем промежуточный компонент, такой как балансировщик нагрузки. Клиент отправляет запрос на сервис через балансировщик нагрузки, который затем перенаправляет запрос доступному экземпляру сервиса.
 
-## Service Registry
+## Реестр сервисов
 
-A service registry is basically a database containing the network locations of service instances to which the clients can reach out. A Service Registry must be highly available and up-to-date.
+Реестр сервисов представляет собой базу данных, содержащую сетевые местоположения экземпляров сервисов, к которым могут обращаться клиенты. Реестр сервисов должен быть высокодоступным и актуальным.
 
-## Service Registration
+## Регистрация сервиса
 
-We also need a way to obtain service information, often known as service registration. Let's look at two possible service registration approaches:
+Нам также нужен способ получения информации о сервисе, часто называемый регистрацией сервиса. Рассмотрим два возможных подхода к регистрации сервиса:
 
-### Self-Registration
+### Саморегистрация
 
-When using the self-registration model, a service instance is responsible for registering and de-registering itself in the Service Registry. In addition, if necessary, a service instance sends heartbeat requests to keep its registration alive.
+При использовании модели саморегистрации экземпляр сервиса отвечает за регистрацию и удаление своего собственного сервиса в реестре сервисов. Кроме того, если необходимо, экземпляр сервиса отправляет запросы к сердцебиению, чтобы поддерживать свою регистрацию в активном состоянии.
 
-### Third-party Registration
+### Регистрация через стороннего поставщика
 
-The registry keeps track of changes to running instances by polling the deployment environment or subscribing to events. When it detects a newly available service instance, it records it in its database. The Service Registry also de-registers terminated service instances.
+Реестр отслеживает изменения запущенных экземпляров, опрашивая среду развертывания или подписываясь на события. Когда он обнаруживает новый доступный экземпляр сервиса, он записывает его в свою базу данных. Реестр сервисов также удаляет из регистрации завершенные экземпляры сервис
+
+ов.
 
 ## Service mesh
 
